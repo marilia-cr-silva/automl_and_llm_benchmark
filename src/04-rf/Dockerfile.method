@@ -1,0 +1,26 @@
+# Stage 04: Random Forest (random search) baseline on the GMM-selected training subsets (one run per row of the stage-02 CSV).
+# Build (from the project root):  docker build -f src/04-rf/Dockerfile.method -t amlb-rf-method .
+# Run:  docker run --rm -v "$PWD/data:/data" -e DATASET=hs_01 -e FILENAME=gmm_random_hs_01_selected_instances.csv amlb-rf-method
+FROM nvidia/cuda:12.3.1-runtime-ubuntu22.04
+WORKDIR /app
+RUN apt-get update && \
+    apt-get install -y python3-pip && \
+    apt-get install -y build-essential && \
+    apt-get install -y software-properties-common && \
+    apt-get clean
+COPY src/04-rf/requirements.txt /app/requirements.txt
+RUN pip install uv && \
+	uv pip install -r requirements.txt --system
+COPY pyproject.toml /app/pyproject.toml
+COPY src/automl_and_llm_benchmark /app/src/automl_and_llm_benchmark
+RUN uv pip install --no-deps --system /app
+COPY src/04-rf/random_forest_baseline.py /app/stage/random_forest_baseline.py
+ENV WORK_DIR=/data \
+    COLLECTION="" \
+    DATASET="" \
+    FILENAME=""
+# WORK_DIR:   default /data, directory with the inputs and receiving the outputs
+# COLLECTION: optional, empty = canonical datasets, pt = Portuguese datasets under WORK_DIR/pt
+# DATASET:    required, dataset id (e.g. hs_01), used in the output file names
+# FILENAME:   required, selected-instances CSV (stage 02) under WORK_DIR
+ENTRYPOINT ["python3", "/app/stage/random_forest_baseline.py"]

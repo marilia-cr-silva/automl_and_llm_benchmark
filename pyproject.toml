@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "automl_and_llm_benchmark"
+version = "0.1.0"
+description = "Benchmark of text-classification methods on Portuguese datasets (shared code)."
+requires-python = ">=3.9"
+# NOTE on dependencies: these are deliberately loose. The per-stage pinned files
+# (src/0N-*/*requirements.txt) are the authoritative environments for each stage and
+# are installed in the Docker images BEFORE this package is installed with `--no-deps`.
+# Stage pins conflict with each other (e.g. pandas 1.5.3 on py3.9 for AutoGluon vs
+# numpy 2.2.5 on py>=3.10 for Llama), so they are NOT encoded as extras here.
+# Stages 07/08 have no pyarrow installed (they only read CSV): nothing in the package
+# may import pyarrow at import time.
+dependencies = [
+    "pandas>=1.5",
+    "numpy>=1.26",
+    "pyarrow",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "pytest",
+    "scikit-learn",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/automl_and_llm_benchmark"]
+# Non-.py files (e.g. static/**/*.json) inside the package are shipped automatically
+# by hatchling; the include below makes that explicit.
+include = ["/src/automl_and_llm_benchmark"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src/automl_and_llm_benchmark",
+    "/tests",
+    "/pyproject.toml",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+src = ["src", "tests"]
+# Only lint the shared package and its tests; the stage scripts are notebook-style.
+include = ["src/automl_and_llm_benchmark/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

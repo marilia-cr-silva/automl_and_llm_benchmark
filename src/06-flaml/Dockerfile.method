@@ -1,0 +1,29 @@
+# Stage 06: FLAML AutoML baseline on the GMM-selected training subsets (one run per row of the stage-02 CSV).
+# Build (from the project root):  docker build -f src/06-flaml/Dockerfile.method -t amlb-flaml-method .
+# Run:  docker run --rm -v "$PWD/data:/data" -e DATASET=hs_01 -e FILENAME=gmm_random_hs_01_selected_instances.csv amlb-flaml-method
+FROM nvidia/cuda:12.3.1-runtime-ubuntu22.04
+WORKDIR /app
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+	apt-get install software-properties-common -y && \
+	add-apt-repository ppa:deadsnakes/ppa && \
+	apt-get install python3.9 -y && \
+	apt-get install python3.9-distutils -y && \
+	apt-get install python3-pip -y && \
+	apt-get install -y build-essential
+RUN /bin/python3.9 -m pip install --upgrade pip setuptools
+COPY src/06-flaml/requirements.txt /app/requirements.txt
+RUN /bin/python3.9 -m pip install -r requirements.txt
+COPY pyproject.toml /app/pyproject.toml
+COPY src/automl_and_llm_benchmark /app/src/automl_and_llm_benchmark
+RUN /bin/python3.9 -m pip install --no-deps /app
+COPY src/06-flaml/flaml_benchmark.py /app/stage/flaml_benchmark.py
+ENV WORK_DIR=/data \
+    COLLECTION="" \
+    DATASET="" \
+    FILENAME=""
+# WORK_DIR:   default /data, directory with the inputs and receiving the outputs
+# COLLECTION: optional, empty = canonical datasets, pt = Portuguese datasets under WORK_DIR/pt
+# DATASET:    required, dataset id (e.g. hs_01), used in the output file names
+# FILENAME:   required, selected-instances CSV (stage 02) under WORK_DIR
+ENTRYPOINT ["/bin/python3.9", "/app/stage/flaml_benchmark.py"]

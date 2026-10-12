@@ -1,0 +1,128 @@
+first_dataset;relation;second_dataset
+ed_03;contains;ed_01
+ed_03;contains;ed_02
+fn_01;contains;fn_02
+fn_01;contains;fn_06
+fn_02;is equal to;fn_06
+fn_03;contains;fn_02
+fn_03;contains;fn_06
+fn_04;contains;fn_02
+fn_04;contains;fn_06
+fn_05;is equal to;fn_07
+fn_06;is equal to;fn_02
+fn_07;is equal to;fn_05
+fn_08;contains;fn_02
+fn_08;contains;fn_06
+fn_09;is equal to;fn_10
+fn_10;is equal to;fn_09
+hs_01;is equal to;hs_11
+hs_02;is equal to;hs_13
+hs_03;is equal to;hs_06
+hs_03;is equal to;hs_08
+hs_03;is equal to;hs_09
+hs_03;is equal to;hs_10
+hs_03;is equal to;hs_12
+hs_04;is equal to;hs_14
+hs_05;contains;hs_02
+hs_05;contains;hs_13
+hs_06;is equal to;hs_03
+hs_06;is equal to;hs_09
+hs_06;is equal to;hs_10
+hs_06;is equal to;hs_12
+hs_08;is equal to;hs_02
+hs_08;is equal to;hs_13
+hs_09;is equal to;hs_03
+hs_09;is equal to;hs_06
+hs_09;is equal to;hs_08
+hs_09;is equal to;hs_10
+hs_09;is equal to;hs_12
+hs_10;is equal to;hs_03
+hs_10;is equal to;hs_06
+hs_10;is equal to;hs_08
+hs_10;is equal to;hs_09
+hs_10;is equal to;hs_12
+hs_11;is equal to;hs_01
+hs_12;is equal to;hs_03
+hs_12;is equal to;hs_06
+hs_12;is equal to;hs_08
+hs_12;is equal to;hs_09
+hs_12;is equal to;hs_10
+hs_13;is equal to;hs_02
+hs_14;is equal to;hs_04
+hs_15;is equal to;hs_15
+pc_01;is equal to;pc_02
+pc_01;is equal to;pc_03
+pc_01;is equal to;pc_04
+pc_01;is equal to;pc_06
+pc_02;is equal to;pc_01
+pc_02;is equal to;pc_03
+pc_02;is equal to;pc_04
+pc_02;is equal to;pc_06
+pc_03;is equal to;pc_01
+pc_03;is equal to;pc_02
+pc_03;is equal to;pc_04
+pc_03;is equal to;pc_06
+pc_04;is equal to;pc_01
+pc_04;is equal to;pc_02
+pc_04;is equal to;pc_03
+pc_04;is equal to;pc_06
+pc_05;contains;pc_01
+pc_05;contains;pc_02
+pc_05;contains;pc_03
+pc_05;contains;pc_04
+pc_05;contains;pc_06
+pc_05;is equal to;pc_07
+pc_05;is equal to;pc_08
+pc_06;is equal to;pc_01
+pc_06;is equal to;pc_02
+pc_06;is equal to;pc_03
+pc_06;is equal to;pc_04
+pc_07;contains;pc_01
+pc_07;contains;pc_02
+pc_07;contains;pc_03
+pc_07;contains;pc_04
+pc_07;is equal to;pc_05
+pc_07;contains;pc_06
+pc_07;is equal to;pc_08
+pc_08;contains;pc_01
+pc_08;contains;pc_02
+pc_08;contains;pc_03
+pc_08;contains;pc_04
+pc_08;is equal to;pc_05
+pc_08;contains;pc_06
+pc_08;is equal to;pc_07
+pc_09;contains;pc_01
+pc_09;contains;pc_02
+pc_09;contains;pc_03
+pc_09;contains;pc_04
+pc_09;contains;pc_05
+pc_09;contains;pc_06
+pc_09;contains;pc_07
+pc_09;contains;pc_08
+sd_03;is equal to;sd_04
+sd_04;is equal to;sd_03
+ua_01;is equal to;ua_03
+ua_01;is equal to;ua_04
+ua_01;is equal to;ua_05
+ua_01;is equal to;ua_06
+ua_02;contains;ua_01
+ua_02;contains;ua_03
+ua_02;contains;ua_04
+ua_02;contains;ua_05
+ua_02;contains;ua_06
+ua_03;is equal to;ua_01
+ua_03;is equal to;ua_04
+ua_03;is equal to;ua_05
+ua_03;is equal to;ua_06
+ua_04;is equal to;ua_01
+ua_04;is equal to;ua_03
+ua_04;is equal to;ua_05
+ua_04;is equal to;ua_06
+ua_05;is equal to;ua_01
+ua_05;is equal to;ua_03
+ua_05;is equal to;ua_04
+ua_05;is equal to;ua_06
+ua_06;is equal to;ua_01
+ua_06;is equal to;ua_03
+ua_06;is equal to;ua_04
+ua_06;is equal to;ua_05
